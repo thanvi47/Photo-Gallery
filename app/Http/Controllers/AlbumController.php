@@ -13,9 +13,16 @@ class AlbumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function getAlbums()
+    {
+        $albums = Album::with('category')->where('user_id', auth()->user()->id)->get();
+        return $albums;
+    }
+
     public function index()
     {
-        //
+        return view('album.index');
     }
 
     /**
@@ -80,7 +87,7 @@ class AlbumController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Album::with('category')->findOrFail($id);
     }
 
     /**

@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('albums/store', 'App\Http\Controllers\AlbumController@store');
-Route::get('albums/create', 'App\Http\Controllers\AlbumController@create');
-//Route::resource('albums', App\Http\Controllers\AlbumController::class);
+Route::post('albums/store', 'App\Http\Controllers\AlbumController@store')->middleware('auth');
+Route::get('albums/create', 'App\Http\Controllers\AlbumController@create')->middleware('auth');
+Route::get('albums', 'App\Http\Controllers\AlbumController@index')->middleware('auth');
+Route::get('getalbums', [App\Http\Controllers\AlbumController::class,'getAlbums'])->middleware('auth');
+//Route::resource('albums', App\Http\Controllers\AlbumController::class)->middleware('auth');
