@@ -5500,17 +5500,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['editrecord'],
   data: function data() {
     return {
-      categories: []
+      categories: [],
+      image: ''
     };
   },
   created: function created() {
     this.getCategories();
   },
   methods: {
+    onImageChange: function onImageChange(e) {
+      console.log(e);
+      this.image = e.target.files[0];
+    },
     getCategories: function getCategories() {
       var _this = this;
 
@@ -5519,7 +5525,15 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         alert('unable to fetch categories');
       });
-    }
+    } // getAlbum(){
+    //     axios.get('/api/album').then((response)=>{
+    //         this.albums = response.data
+    //         console.log(this.albums);
+    //     }).catch((error)=>{
+    //         alert('unable to fetch albums')
+    //     })
+    // },
+
   }
 });
 
@@ -29339,7 +29353,7 @@ var render = function () {
             _c("div", { staticClass: "modal-body" }, [
               _c("form", { attrs: { enctype: "multipart/form-data" } }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Name of Album")]),
+                  _c("label", [_vm._v("Name of Album   ")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [

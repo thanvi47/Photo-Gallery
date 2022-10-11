@@ -14,7 +14,7 @@
                         <form  enctype="multipart/form-data" >
                             <div class="form-group">
 
-                                <label>Name of Album</label>
+                                <label>Name of Album   </label>
                                 <input type="text" name="name" v-model="editrecord.name" class="form-control" maxlength="15">
 
 
@@ -26,6 +26,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Category of Album</label>
+
                                 <select class="form-control" name="category" v-model="editrecord.category_id" >
 
                                     <option v-for="(category,index) in categories"
@@ -56,17 +57,25 @@
     </div>
 </template>
 <script type="text/javascript">
-export default {
+export default{
     props:['editrecord'],
     data(){
         return{
             categories:[],
+            image:''
 
         }
     },
-    created() {
+    created(){
         this.getCategories();
-    },methods:{
+    },
+    methods:{
+        onImageChange(e){
+            console.log(e)
+            this.image = e.target.files[0];
+
+        },
+
         getCategories(){
             axios.get('/api/category').then((response)=>{
                 this.categories = response.data
@@ -74,6 +83,16 @@ export default {
                 alert('unable to fetch categories')
             })
         },
-    }
+        // getAlbum(){
+        //     axios.get('/api/album').then((response)=>{
+        //         this.albums = response.data
+        //         console.log(this.albums);
+        //     }).catch((error)=>{
+        //         alert('unable to fetch albums')
+        //     })
+        // },
+    },
+
 }
+
 </script>
