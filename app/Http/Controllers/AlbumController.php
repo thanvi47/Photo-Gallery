@@ -99,7 +99,24 @@ class AlbumController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $findAlbum = Album::findOrFail($id);
+        $photo = $findAlbum->image;
+        if($request->hasFile('image')){
+            $file= $request->file('image');
+            $photo= $file->hashName();
+            $file->move('./album',$photo);
+        }
+        $album=Album::findOrFail($id);
+        $album->name=$request->name;
+        $album->description=$request->description;
+        $album->category_id=$request->category_id;
+        $album->image=$photo;
+
+        $success = $album->save();
+        if($success){
+            return response()->json($this->getAlbums());
+        }
     }
 
     /**
@@ -110,6 +127,9 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $album=Album::findOrFail($id)->delete();
+        if ($album){
+            return response()->json($this->getAlbums());
+        }
     }
 }

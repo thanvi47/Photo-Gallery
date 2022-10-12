@@ -28,10 +28,15 @@
                       Edit
                   </button>
               </td>
+              <td>
+                  <button @click.prevent="deleteRecord(album.id)" type="button" class="btn btn-danger" >
+                      Delete
+                  </button>
+              </td>
           </tr>
           </tbody>
       </table>
-<edit-component :editrecord="records"></edit-component>
+<edit-component :editrecord="records" @recordUpdated="recordUpdate"></edit-component>
     </div>
 </template>
 <script type="text/javascript">
@@ -43,6 +48,13 @@ export default {
         }
     },created() {
         axios.get('/getalbums').then((response)=>{
+            // Swal.fire({
+            //     position: 'center',
+            //     icon: 'success',
+            //     title: 'Your chnages has been saved',
+            //     showConfirmButton: false,
+            //     timer: 1500
+            // })
             this.albums=response.data
         }).catch((error)=>{
             alert('unable to fetch albums')
@@ -55,7 +67,43 @@ export default {
           }).catch((error)=>{
               alert('unable to fetch album')
           })
+        },
+        recordUpdate(response){
+            this.albums = response.data
+        },deleteRecord(id){
+
+
+                Swal.fire({
+                    // position: 'center',
+                    icon: 'warning',
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonColor: '#3085d6',
+                    // showConfirmButton: false,
+                    timer: 1500
+                }).then((result)=>{
+                    if(result.value){
+                        axios.delete('albums/'+id+'/delete').then((response)=>{
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Your chnages has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            this.albums = response.data
+                        }).catch((error)=>{
+                            console.log(error)
+                        })
+                    }
+            })
+
+
         }
+
     }
 
 }
