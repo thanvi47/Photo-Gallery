@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Dashboard') }}</div>
                     <ExampleComponent></ExampleComponent>
                     <div class="card-body">
-<upload-component></upload-component>
+<upload-component  :album_id="{{$album_id}}"></upload-component>
                     </div>
                 </div>
             </div>
