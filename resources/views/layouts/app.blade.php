@@ -53,9 +53,16 @@
                             @endif
                         @else
                             <ul class="navbar-nav me-auto">
+                                @if(Auth::check())
                                 <li class="nav-item">
-                                <a  class="nav-link toggle" href="{{url('/albums')}}">My Albums</a>
+
+
+                                <a  class="nav-link toggle" href="{{url('/user/profile',auth()->user()->id)}}">My Album</a>
                                 </li>
+                                    @endif
+                                    <li class="nav-item">
+                                    <a  class="nav-link toggle" href="{{url('/albums')}}">My Dashboard</a>
+                                    </li>
                             </ul>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

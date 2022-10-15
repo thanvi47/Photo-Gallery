@@ -23,8 +23,8 @@
         <div class="col-md-12">
             <div class="card-body">
                 @foreach($albums as $album)
-
-
+<follow-component></follow-component>
+        Created By <a href="{{url('/user/profile',$album->user_id)}}">{{$album->user->name}}</a>
             </div>
 
             <h2> {{$album->name}}</h2>

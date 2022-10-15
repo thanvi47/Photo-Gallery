@@ -24,6 +24,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('index-component', require('./components/IndexComponent.vue').default);
 Vue.component('edit-component', require('./components/EditComponent.vue').default);
 Vue.component('upload-component', require('./components/UploadComponent.vue').default);
+Vue.component('follow-component', require('./components/FollowComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

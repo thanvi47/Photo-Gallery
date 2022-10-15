@@ -19,5 +19,8 @@ class Album extends Model
     {
         return $this->hasMany(Image::class,'album_id','id');
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
     use HasFactory;
 }
