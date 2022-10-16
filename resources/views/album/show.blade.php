@@ -23,7 +23,9 @@
         <div class="col-md-12">
             <div class="card-body">
                 @foreach($albums as $album)
-<follow-component></follow-component>
+                    @if( Auth::check() && auth()->user()->id!=$userId)
+<follow-component user-id="{{$userId}}" follows-="{{$follows}}"></follow-component>
+                    @endif
         Created By <a href="{{url('/user/profile',$album->user_id)}}">{{$album->user->name}}</a>
             </div>
 

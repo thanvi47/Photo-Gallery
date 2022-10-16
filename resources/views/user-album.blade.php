@@ -6,6 +6,9 @@
             <h1 class="display-4">Share Your Photo</h1>
             <b class="lead">Share Your Photos with Peple</b>
         </div>
+        @if(Auth::check() && auth()->user()->id!=$userId)
+            <follow-component user-id="{{$userId}}" follows-="{{$follows}}"></follow-component>
+        @endif
         <div class="row">
             @foreach($albums as $album)
                 <div class="col-lg-3">

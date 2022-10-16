@@ -20,6 +20,7 @@ Route::get('/',[App\Http\Controllers\FrontendControler::class,'index']);
 Auth::routes();
 Route::get('/user/profile/{id}',[\App\Http\Controllers\FrontendControler::class,'userAlbum']);
 Route::post('/follow',[\App\Http\Controllers\FollowControler::class,'followUnfollow']);
+Route::get('/profile',[\App\Http\Controllers\FollowControler::class,'profile']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('albums/store', 'App\Http\Controllers\AlbumController@store')->middleware('auth');
 Route::get('albums/create', 'App\Http\Controllers\AlbumController@create')->middleware('auth');

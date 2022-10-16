@@ -101,7 +101,7 @@ export default{
             formData.append('category_id',this.editrecord.category_id);
             formData.append("_method","put");
             axios.post('/albums/'+this.editrecord.id+'/edit',formData,config).then((response)=>{
-                $('#exampleModal').modal('hide');
+                $('#exampleModal').modal.hide();;
                 this.$emit('recordUpdated',response)
                 Swal.fire({
                     position: 'center',
