@@ -11,14 +11,15 @@
 
                         <ul class="nav nav-tabs" role="tablist">
 
-                            <li class="nav-item active">
+                            <li class="nav-item ">
                                 <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Following</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#profilepic" role="tab" data-toggle="tab">Profile picture</a>
+                                <a class="nav-link " href="#profilepic" role="tab" data-toggle="tab">Profile picture</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#bgpic" role="tab" data-toggle="tab">Background picture</a>
+                                <a class="nav-link " href="#bgpic" role="tab" data-toggle="tab">Background
+                                    picture</a>
                             </li>
 
                         </ul>
@@ -29,7 +30,8 @@
                             <div role="tabpanel" class="tab-pane active" id="buzz">
                                 @foreach($followings as $follow)
                                     <p> {{$follow->userfollow->name}}
-                                        <a href=""> <img src="{{Storage::url($follow->userfollow->profilePic)}}" width="20"></a>
+                                        <a href=""> <img src="{{Storage::url($follow->userfollow->profilePic)}}"
+                                                         width="20"></a>
                                     </p>
                                     <p>  @if(auth()->user()->id!=$userId)
 
@@ -39,11 +41,10 @@
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="profilepic">
 
-                                <avatar userid="{{auth()->user()->id }}"></avatar>
-
+                                <avatar-component userid="{{auth()->user()->id }}"></avatar-component>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="bgpic">
-                                <bg userid="{{auth()->user()->id}}"></bg>
+                                           userId="{{auth()->user()->id}}"
 
 
                             </div>
@@ -53,4 +54,20 @@
                 </div>
             </div>
         </div>
+
+
+    {{--        <ul class="nav nav-tabs">--}}
+    {{--            <li class="nav-item">--}}
+    {{--                <a class="nav-link active" aria-current="page" href="#">Active</a>--}}
+    {{--            </li>--}}
+    {{--            <li class="nav-item">--}}
+    {{--                <a class="nav-link active" href="#">Link</a>--}}
+    {{--            </li>--}}
+    {{--            <li class="nav-item">--}}
+    {{--                <a class="nav-link" href="#">Link</a>--}}
+    {{--            </li>--}}
+    {{--            <li class="nav-item">--}}
+    {{--                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>--}}
+    {{--            </li>--}}
+    {{--        </ul>--}}
 @endsection

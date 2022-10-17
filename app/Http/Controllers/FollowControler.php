@@ -29,4 +29,18 @@ class FollowControler extends Controller
 
     }
     }
+    public function updateProfilePic(Request $request){
+        $this->validate($request,[
+           'image'=>'required|mimes:jpg,jpeg,png'
+        ]);
+        $image=$request->image->store('public/avatar');
+        $authUser=auth()->user()->id;
+        $user=User::Where('id',$authUser)->update(['profilePic'=>$image]);
+        return redirect()->back();
+    }
+    public function userProfilePic($id){
+        $user=User::find($id);
+        return $user->profilePic;
+
+    }
 }

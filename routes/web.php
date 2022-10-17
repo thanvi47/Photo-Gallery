@@ -34,3 +34,5 @@ Route::get('upload/images/{id}',[\App\Http\Controllers\GalleryControler::class,'
 Route::post ('uploadImage',[\App\Http\Controllers\GalleryControler::class,'upload'])->middleware('auth');
 Route::get('getimages',[\App\Http\Controllers\GalleryControler::class,'images'])->middleware('auth');
 Route::delete('images/{id}',[\App\Http\Controllers\GalleryControler::class,'destroy'])->middleware('auth');
+Route::get('/user/{id}',[\App\Http\Controllers\FollowControler::class,'userProfilePic']);
+Route::post('profile-pic',[\App\Http\Controllers\FollowControler::class,'updateProfilePic']);
