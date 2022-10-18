@@ -28,6 +28,9 @@
                         <div class="tab-content">
 
                             <div role="tabpanel" class="tab-pane active" id="buzz">
+{{--                                {{dd($followings)}}--}}
+
+
                                 @foreach($followings as $follow)
                                     <p> {{$follow->userfollow->name}}
                                         <a href=""> <img src="{{Storage::url($follow->userfollow->profilePic)}}"
@@ -38,13 +41,14 @@
                                             <follow user-id="{{$userId}}" follows="{{$follows}}"></follow>
                                         @endif</p>
                                 @endforeach
+
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="profilepic">
 
                                 <avatar-component userid="{{auth()->user()->id }}"></avatar-component>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="bgpic">
-                                           userId="{{auth()->user()->id}}"
+                                          <bg-component userId="{{auth()->user()->id}}"></bg-component>
 
 
                             </div>

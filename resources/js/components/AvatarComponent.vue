@@ -43,6 +43,7 @@ export default {
                 }
             }
             let formData = new FormData();
+
             formData.append('image',this.image);
             axios.post('/profile-pic',formData,config).then((response)=>{
                 Swal.fire({

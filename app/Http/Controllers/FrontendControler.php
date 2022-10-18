@@ -17,11 +17,18 @@ class FrontendControler extends Controller
     public function userAlbum($id){
         $albums =Album::where('user_id',$id)->get();
         $userId=$id;
+        $user=User::where('id',$id)->first();
+        $userBgPic=$user->bgpic;
         if (Auth::check()) {
             $follows = (new User())->amIfollowing($userId);
-            return view('user-album', compact('albums', 'userId', 'follows'));
+            return view('user-album', compact('albums', 'userId', 'follows','userBgPic'));
         }
-        return view('user-album', compact('albums', ));
 
+        return view('user-album', compact('albums','userBgPic' ));
+
+    }
+    public function albumCategory($id){
+        $albums=Album::where('category_id',$id)->get();
+        return view('album-category',compact('albums'));
     }
 }

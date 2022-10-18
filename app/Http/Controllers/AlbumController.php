@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Album;
@@ -127,8 +128,15 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        $album=Album::findOrFail($id)->delete();
+        $album=Album::findOrFail($id);
+        unlink(public_path('/album/'.$album->image));
+        $album->delete();
         if ($album){
+            $images=Image::where('album_id',$id)->get();
+            foreach ($images as $image){
+                unlink(public_path('/images/'.$image->image));
+            }
+            Image::where('album_id',$id)->delete();
             return response()->json($this->getAlbums());
         }
     }

@@ -28,6 +28,7 @@ class FollowControler extends Controller
         return view('profile',compact('userId','follows','followings'));
 
     }
+        return view('profile',compact('followings'));
     }
     public function updateProfilePic(Request $request){
         $this->validate($request,[
@@ -41,6 +42,20 @@ class FollowControler extends Controller
     public function userProfilePic($id){
         $user=User::find($id);
         return $user->profilePic;
+
+    }
+    public function updatebgPic(Request $request){
+        $this->validate($request,[
+           'image'=>'required|mimes:jpg,jpeg,png'
+        ]);
+        $image=$request->image->store('public/avatar');
+        $authUser=auth()->user()->id;
+        $user=User::Where('id',$authUser)->update(['bgpic'=>$image]);
+        return redirect()->back();
+    }
+    public function userbgPic($id){
+        $user=User::find($id);
+        return $user->bgpic;
 
     }
 }

@@ -12,14 +12,15 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" defer></script>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-{{--    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 {{--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>--}}
 
     <!-- Styles -->
@@ -42,6 +43,25 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="navbar-brand" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <span class="caret"></span>
+                                Browse
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @foreach(\App\Models\Category::all() as $cat)
+                                    <a class="dropdown-item" href="/{{$cat->id}}/category">
+                                        {{$cat->name}}
+                                    </a>
+                                @endforeach
+
+                            </div>
+                        </li>
+
+
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -57,15 +77,21 @@
                             @endif
                         @else
                             <ul class="navbar-nav me-auto">
+
+
+
+
+
+
                                 @if(Auth::check())
                                 <li class="nav-item">
 
 
-                                <a  class="nav-link toggle" href="{{url('/user/profile',auth()->user()->id)}}">My Album</a>
+                                <a  class="navbar-brand" href="{{url('/user/profile',auth()->user()->id)}}">My Album</a>
                                 </li>
                                     @endif
                                     <li class="nav-item">
-                                    <a  class="nav-link toggle" href="{{url('/albums')}}">My Dashboard</a>
+                                    <a  class="navbar-brand" href="{{url('/albums')}}">My Dashboard</a>
                                     </li>
                             </ul>
                             <li class="nav-item dropdown">
